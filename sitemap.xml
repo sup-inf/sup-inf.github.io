@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2019/01/24/genetic-algorithm/</loc>
+    <loc>https://rm-rf.moe/About/index.html</loc>
     
-    <lastmod>2019-01-24T09:27:03.041Z</lastmod>
+    <lastmod>2019-02-01T13:05:43.148Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://rm-rf.moe/2019/02/01/neural-network/</loc>
+    
+    <lastmod>2019-02-01T10:25:35.223Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://rm-rf.moe/2019/01/24/genetic-algorithm/</loc>
+    
+    <lastmod>2019-02-01T10:25:03.195Z</lastmod>
     
   </url>
   
