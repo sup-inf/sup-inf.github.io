@@ -1,23 +1,31 @@
-<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Backstepping Technique · LOVINEE</title><meta name="description" content="Backstepping Technique - hsm"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://rm-rf.moe/atom.xml" title="LOVINEE"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">ABOUT</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Backstepping Technique</h1><div class="post-info">Feb 2, 2019</div><div class="post-content"><h1 id="Single-integrator-Backstepping"><a href="#Single-integrator-Backstepping" class="headerlink" title="Single-integrator Backstepping"></a>Single-integrator Backstepping</h1><p>Consider the system  </p>
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Backstepping Technique · LOVINEE</title><meta name="description" content="Backstepping Technique - hsm"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://rm-rf.moe/atom.xml" title="LOVINEE"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">ABOUT</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Backstepping Technique</h1><div class="post-info">Feb 2, 2019</div><div class="post-content"><p>Consider the system  </p>
 <script type="math/tex; mode=display">
 \left\{
 \begin{aligned}
 &\dot{x} = f(x) + g(x)\eta,\ g(x) > 0\\
 &\dot{\eta} = u
 \end{aligned}
-\right.</script><p>where, <script type="math/tex">x,y \in \mathbb{R}</script> are the states, <script type="math/tex">u \in \mathbb{R}</script> is the control input, and <script type="math/tex">f,g</script> are assumed to be known.<br><a id="more"></a></p>
+\right.</script><p>where, <script type="math/tex">x,y \in \mathbb{R}</script> are the states, <script type="math/tex">u \in \mathbb{R}</script> is the control input, and <script type="math/tex">f,g</script> are assumed to be known.</p>
 <blockquote>
 <p><em>Objective:</em> <script type="math/tex">x \to 0</script> as <script type="math/tex">t \to \infty</script> </p>
 </blockquote>
 <div align="center">
   <img width="350" src="/2019/02/02/backstepping/1.png">
 </div>
+<a id="more"></a>
 
-<h2 id="LaShalle-Yoshizawa-Theorem"><a href="#LaShalle-Yoshizawa-Theorem" class="headerlink" title="LaShalle-Yoshizawa Theorem"></a>LaShalle-Yoshizawa Theorem</h2><p>Let <script type="math/tex">x = 0</script> be an equilibrium point of <script type="math/tex">\dot{x} = f(x,t)</script> and suppose <script type="math/tex">f</script> is locally Lipschitz in <script type="math/tex">x</script> uniformly in <script type="math/tex">t</script>. Let <script type="math/tex">V: \mathbb{R}^n \to \mathbb{R}_+</script> be a continuously differentiable, positive define and radially unbounded function <script type="math/tex">V(x)</script> such that:    </p>
-<script type="math/tex; mode=display">
-\dot{V} = \frac{\partial V}{\partial x}(x)f(x,t)\leq -W(x) \leq 0,\ \ \ \ \ \  \forall t \geq 0, \  \ \forall x \in \mathbb{R}</script><p>Where <script type="math/tex">W</script> is a continuous function. Then all solutions of <script type="math/tex">\dot{x} = f(x,t)</script>                                                      are globally uniformly bounded and satisfy</p>
-<script type="math/tex; mode=display">\lim_{t \to \infty} W(x(t)) = 0</script><p>If <script type="math/tex">W(x)</script> is positive define, then equilibrium            is <strong>Globally Uniformly Asymptotically Stable</strong>(GUAS)</p>
-<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><div align="center">
+# Single-integrator Backstepping
+## LaShalle-Yoshizawa Theorem
+Let $$x = 0$$ be an equilibrium point of $$\dot{x} = f(x,t)$$ and suppose $$f$$ is locally Lipschitz in $$x$$ uniformly in $$t$$. Let $$V: \mathbb{R}^n \to \mathbb{R}_+$$ be a continuously differentiable, positive define and radially unbounded function $$V(x)$$ such that:    
+$$
+\dot{V} = \frac{\partial V}{\partial x}(x)f(x,t)\leq -W(x) \leq 0,\ \ \ \ \ \  \forall t \geq 0, \  \ \forall x \in \mathbb{R}
+$$
+
+Where $$W$$ is a continuous function. Then all solutions of $$\dot{x} = f(x,t)$$                                                      are globally uniformly bounded and satisfy
+$$\lim_{t \to \infty} W(x(t)) = 0$$
+If $$W(x)$$ is positive define, then equilibrium            is **Globally Uniformly Asymptotically Stable**(GUAS)
+## Method
+<div align="center">
   <img width="400" src="/2019/02/02/backstepping/2.png">
 </div>
 

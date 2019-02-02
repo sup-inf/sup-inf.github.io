@@ -2,16 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://rm-rf.moe/2019/02/02/backstepping/</loc>
+    <loc>https://rm-rf.moe/2019/02/02/adaptive-robust-backstepping/</loc>
     
-    <lastmod>2019-02-02T04:29:34.489Z</lastmod>
+    <lastmod>2019-02-02T08:09:13.926Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://rm-rf.moe/2019/02/02/adaptive-robust-backstepping/</loc>
+    <loc>https://rm-rf.moe/2019/01/24/genetic-algorithm/</loc>
     
-    <lastmod>2019-02-02T04:24:03.096Z</lastmod>
+    <lastmod>2019-02-02T04:47:27.223Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://rm-rf.moe/2019/02/01/neural-network/</loc>
+    
+    <lastmod>2019-02-02T04:47:13.967Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://rm-rf.moe/2019/02/02/backstepping/</loc>
+    
+    <lastmod>2019-02-02T04:45:19.440Z</lastmod>
     
   </url>
   
@@ -19,20 +33,6 @@
     <loc>https://rm-rf.moe/about/index.html</loc>
     
     <lastmod>2019-02-01T13:05:43.148Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://rm-rf.moe/2019/02/01/neural-network/</loc>
-    
-    <lastmod>2019-02-01T10:25:35.223Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://rm-rf.moe/2019/01/24/genetic-algorithm/</loc>
-    
-    <lastmod>2019-02-01T10:25:03.195Z</lastmod>
     
   </url>
   

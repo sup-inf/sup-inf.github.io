@@ -1,1 +1,84 @@
-<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> adaptive-robust-backstepping · LOVINEE</title><meta name="description" content="adaptive-robust-backstepping - hsm"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://rm-rf.moe/atom.xml" title="LOVINEE"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">ABOUT</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">adaptive-robust-backstepping</h1><div class="post-info">Feb 2, 2019</div><div class="post-content"></div></article></div></main><footer><div class="paginator"><a href="/2019/02/02/backstepping/" class="next">NEXT</a></div><div class="copyright"><p>© 2019 <a href="https://rm-rf.moe">hsm</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Adaptive/Robust Backstepping Techniques · LOVINEE</title><meta name="description" content="Adaptive/Robust Backstepping Techniques - hsm"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://rm-rf.moe/atom.xml" title="LOVINEE"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">ABOUT</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Adaptive/Robust Backstepping Techniques</h1><div class="post-info">Feb 2, 2019</div><div class="post-content"><ul>
+<li>Uncertainties  <blockquote>
+<p><strong>Structured(or parametric) uncertainties</strong><br>Corresponds to inaccuracies on terms actually included in the model<br><strong>Unstructured uncertainties(or unmodeled dynamics)</strong><br>Corresponds to inaccuracies on(i.e., underestimation of) the system order</p>
+<a id="more"></a>
+</blockquote>
+</li>
+</ul>
+<h1 id="Adaptive-Backstepping"><a href="#Adaptive-Backstepping" class="headerlink" title="Adaptive Backstepping"></a>Adaptive Backstepping</h1><p>Consider a nonlinear system</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{aligned}
+&\dot{x_1} = x_2 + \theta x_1^2 \\
+&\dot {x}_2 = u
+\end{aligned}
+\right.</script><p>where the parameter <script type="math/tex">\theta</script> is unknown, we assume that <script type="math/tex">\theta</script> is constant.</p>
+<blockquote>
+<p><em>Objective:</em> <script type="math/tex">x_1 \to 0</script> as <script type="math/tex">t \to \infty</script></p>
+</blockquote>
+<p>For this system the adaptive controller design is in two steps.</p>
+<h2 id="Step-1"><a href="#Step-1" class="headerlink" title="Step 1"></a>Step 1</h2><p>We introduce <script type="math/tex">z_1 = x_1</script>  and <script type="math/tex">z_2 = x_2 - \alpha_1</script> and consider <script type="math/tex">\alpha</script> as a control to stabilize the <script type="math/tex">z_1</script>-system with respect to the Lyapunov function</p>
+<script type="math/tex; mode=display">
+V_1 = \frac{1}{2}z_1^2 + \frac{1}{2}(\widehat{\theta}-\theta)^2</script><p>The <script type="math/tex">z_1</script>-system and the corresponding <script type="math/tex">\dot{V}_1</script> are:</p>
+<script type="math/tex; mode=display">
+\dot z_1 = z_2 + \alpha_1+\widehat{\theta}z_1^2-(\widehat{\theta}-\theta)z_1^2</script><script type="math/tex; mode=display">
+\dot{V}_1 = z_1(z_2 + \alpha_1 + \widehat{\theta}z_1^2)+(\widehat{\theta}-\theta)(\dot{\widehat{\theta}}-z_1z_1^2)</script><p>let <script type="math/tex">\tau_1 = z_1 z_1^2</script>, and if <script type="math/tex">z_2 = 0</script></p>
+<blockquote>
+<p><em>Objective:</em> <script type="math/tex">\dot{V}_1 = -z_1^2</script></p>
+</blockquote>
+<script type="math/tex; mode=display">\begin{aligned} &\Leftarrow \dot{\widehat{\theta}} = \tau_1 \\ &\Leftarrow \alpha_1 = -z_1 - \widehat{\theta}z_1^2 \end{aligned}</script><p>Substitute <script type="math/tex">\tau_1(z_1)</script> and <script type="math/tex">\alpha_1(z_1, \widehat{\theta})</script></p>
+<p>we obtain:</p>
+<script type="math/tex; mode=display">\dot{V}_1 = -z_1^2 + z_1 z_2 + (\widehat{\theta} - \theta)(\dot{\widehat{\theta}}-\tau_1)</script><p>where <script type="math/tex">z_1 z_2 + (\widehat{\theta} - \theta)(\dot{\widehat{\theta}}-\tau_1)</script> should be taken off.</p>
+<h2 id="Step-2"><a href="#Step-2" class="headerlink" title="Step 2"></a>Step 2</h2><p>With <script type="math/tex">z_1 = x_1, z_2 = x_2 - \alpha_1</script>, the original system has been transformed into </p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\dot{z}_1 = -z_1 + z_2-(\widehat{\theta}-\theta)z_1^2\\
+&\dot{z}_2 = u - \frac{\partial a_1}{\partial z_1}\dot{z_1} - \frac{\partial a_1}{\partial \widehat \theta}\dot{\widehat{\theta}}
+\end{aligned}</script><p>Choose Lyapunov Function</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&V_2 = V_1 + \frac{1}{2}z_2^2 \\
+&\dot{V}_2 = \dot{V}_1 + z_2 \dot{z}_2 \\
+&\dot{V}_2 = -z_1^2 + z_2[z_1+u+\frac{\partial \alpha_1}{\partial z_1}(z_1 - z_2)-\frac{\partial \alpha_1}{\partial \widehat{\theta}} \dot{\widehat{\theta}}]
++(\widehat{\theta}-\theta)(\dot{\widehat{\theta}}-\tau_1 + z_2\frac{\partial \alpha_1}{\partial z_1}z_1^2)
+\end{aligned}</script><blockquote>
+<p><em>Objective:</em> <script type="math/tex">\dot{V}_2 = -z_1^2-z_2^2</script></p>
+</blockquote>
+<script type="math/tex; mode=display">
+\Leftarrow u = -z_1 -z_2 - \frac{\partial \alpha_1}{\partial z_1}(z_1  - z_2) + \frac{\partial \alpha_1}{\partial \widehat{\theta}}\dot{\widehat{\theta}}</script><p>where <script type="math/tex">\dot{\widehat{\theta}} = \tau_1-z_1\frac{\partial \alpha_1}{\partial z_1}z_1^2</script></p>
+<h1 id="Robust-Backstepping"><a href="#Robust-Backstepping" class="headerlink" title="Robust Backstepping"></a>Robust Backstepping</h1><p>Consider a nonlinear system</p>
+<script type="math/tex; mode=display">\left\{
+\begin{aligned}
+&\dot{x_1} = x_2 + \theta x_1^2 \\
+&\dot {x}_2 = u
+\end{aligned}
+\right.</script><p>we assume that the unknown parameter <script type="math/tex">\theta</script> belongs to a known interval <script type="math/tex">|\theta| < \overline \theta</script></p>
+<blockquote>
+<p><em>Objective:</em> <script type="math/tex">x_1 \to 0</script> as <script type="math/tex">t \to \infty</script></p>
+</blockquote>
+<p>For this system the robust controller design is in two steps.</p>
+<h2 id="Step-1-1"><a href="#Step-1-1" class="headerlink" title="Step 1"></a>Step 1</h2><p>To apply backstepping,  we design a <script type="math/tex">v</script>-controller for</p>
+<script type="math/tex; mode=display">
+\dot{x}_1 = \theta x_1^2 + v</script><p>Choose Lyapunov function <script type="math/tex">V_1 = \frac{1}{2}x_1^2</script><br>Several different designs are possible: </p>
+<script type="math/tex; mode=display">
+v = -c_1x_1 - \frac{\overline{\theta}}{2}(ax_1+\frac{1}{a}x_1^3) \ \ \ \ \ \ \ /\ \ \ \ \ \  \ 
+
+v = -c_1x_1 - x_1^2\overline{\theta}s(x)</script><p>where <script type="math/tex">s(x)</script> is a smooth switching function.  </p>
+<ul>
+<li><script type="math/tex; mode=display">\dot{V}_1 = -c_1x_1^2 - \frac{1}{2}x_1^2(\frac{\overline \theta}{a}x_1^2-2\theta x_1+a\overline{\theta})</script></li>
+<li><script type="math/tex; mode=display">\dot{V}_1 = -c_1x_1^2 - x_1^3(\overline{\theta}s(x_1)-\theta)</script></li>
+</ul>
+<h2 id="Step-2-1"><a href="#Step-2-1" class="headerlink" title="Step 2"></a>Step 2</h2><p>We now employ backstepping to design <script type="math/tex">u</script>-controllers for the second order system.<br>Choose Lyapunov function: <script type="math/tex">V_2 = \frac{1}{2}x_1^2+\frac{1}{2}(x_2-v)^2</script><br>Choose<script type="math/tex">v = -c_1x_1 - \frac{\overline{\theta}}{2}(ax_1+\frac{1}{a}x_1^3)</script><br>and we have</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\dot{V}_2 &= x_1[\theta x_1^2+(x_2-v)+v]+(x_2-v)(u-\dot{v})\\
+&= x_1(\theta x_1^2+v)+(x_2-v)(u+x_1-\dot{v})
+\end{aligned}</script><blockquote>
+<p><em>Objective:</em> <script type="math/tex">\dot{V_2} \leq 0</script></p>
+</blockquote>
+<script type="math/tex; mode=display">
+\Leftarrow u = -x_1 - c(x_2 - v) + \frac{\partial v}{\partial x_1}(s(x_1,x_2)x_1^2+x_2)</script><p>We should choose <script type="math/tex">s(x_1,x_2)</script> to satisfy <script type="math/tex">(x_2-v)\frac{\partial v}{\partial x_1} x_1^2(s(x_1,x_2)-\theta) \leq 0</script>:  </p>
+<ul>
+<li>When <script type="math/tex">(x_2 - v)\frac{\partial v}{\partial x_1}\geq 0</script>, <script type="math/tex">s(x_1,x_2) = -\overline{\theta}</script></li>
+<li>When <script type="math/tex">(x_2 - v)\frac{\partial v}{\partial x_1} < 0</script>, <script type="math/tex">s(x_1,x_2) = \overline{\theta}</script></li>
+</ul>
+</div></article></div></main><footer><div class="paginator"><a href="/2019/02/02/backstepping/" class="next">NEXT</a></div><div class="copyright"><p>© 2019 <a href="https://rm-rf.moe">hsm</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script></body></html>
