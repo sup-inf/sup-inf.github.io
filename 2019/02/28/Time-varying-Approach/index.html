@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang="en"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Notes-Global uniform asymptotic stabiliztion of an underactuated surface vessel · SCIENTIA</title><meta name="description" content="Notes-Global uniform asymptotic stabiliztion of an underactuated surface vessel - HSM"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="https://rm-rf.moe/atom.xml" title="SCIENTIA"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="/about/" target="_self" class="nav-list-link">ABOUT</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">Notes-Global uniform asymptotic stabiliztion of an underactuated surface vessel</h1><div class="post-info">Feb 28, 2019</div><div class="post-content"><ul>
+<li>This is a <em>Time-varying Continuous</em> Approach.   </li>
+</ul>
+<p>The dynamics of an underactuated ship is</p>
+<script type="math/tex; mode=display">\begin{aligned}
+&\dot \eta = J(\eta) v \\
+&M\dot v = -C(v)v - Dv + \tau \\
+&\eta = [x, y, \psi]^T,\ v = [u, v, r]^T, \ \tau = [\tau_u, 0, \tau_r]^T
+\end{aligned}</script><a id="more"></a>
+<p>The coordinate transformations</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+z_1 &= cos(\psi)x + sin(\psi)y \\
+z_2 &= -sin(\psi)x + cos(\psi)y \\
+z_3 &= \psi \\
+\Omega &= \frac{\tau_r-d_{33}r+(m_{11}-m_{22}uv)}{m_{33}}\\
+\Omega &= \frac{\tau_u+m_{22}vr-d_{11}u}{m_{11}}
+\end{aligned}</script><p>are first used to transform the ship system to</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\dot z_1 &= u + z_2 r \\
+\dot z_2 &= v - z_1 r \\
+\dot z_3 &= r\\
+\dot u &= \Omega_2\\
+\dot v &= -cur-dv\\
+\dot r &= \Omega_1
+\end{aligned}</script><p>where <script type="math/tex">c = m_{11}/m_{22}</script> and <script type="math/tex">d = d_{22}/m_{22}</script>. Then the following nontrivial coordinate transformations</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+Z_2 &= z_2 + \frac{v}{d} \\
+u &= -\frac{d}{c}z_1 - \frac{d}{c}\mu \\
+\Omega_{2\mu} &= \frac{d}{c}z_1 + \frac{d}{c}\mu -Z_2 r + \frac{v}{d}r - \frac{c}{d} \Omega_2
+\end{aligned}</script><p>are applied to the transformed ship system to obtain the new system:</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\dot z_1 &= -\frac{d}{c}z_1 - \frac{d}{c}\mu + Z_2 r -\frac{v}{d} r \\
+\dot Z_2 &= \mu r \\
+\dot z_3 &= r \\
+\dot v &= -dv + d(z_1 + \mu)r \\
+\dot \mu &= \Omega_{2\mu} \\
+\dot r &= \Omega_1
+\end{aligned}</script><p>Let <script type="math/tex">k_2, k_3, k_\mu</script> and <script type="math/tex">k_r</script> be strictly positive constants such that <script type="math/tex">1 \geq k_2 \geq k_3</script>. The control <script type="math/tex">\Omega_1</script> and <script type="math/tex">\Omega_{2\mu}</script> are designed in the paper as</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\Omega_1 &= -k_r(r-r_f) + \dot r_f - \lambda(Z_2 \mu_f + 2Z_3 + 2Z_2 k_2 cos(t)\mu_f)\\
+\Omega_{2\mu} &= -k_\mu(\mu - \mu_f) + \dot \mu_f - \lambda(Z_2 + 2Z_3k_2cos(t))r
+\end{aligned}</script><p>where</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\lambda &= 2 + \frac{k_3}{3} - \frac{k_3 sin(2t)}{6}\frac{2V_1 + V_1^2}{(1+V_1)^2}\\
+Z_3 &= z_3 + k_2 cos(t) Z_2 \\
+V_1 &= Z_2^2 + 2Z_3^2 \\
+\mu_f &= -\frac{sin(t)Z_2^2}{2(0.001+Z_2^2)}\\
+r_f &= \frac{-k_3 Z_3 + k_2 sin(t) Z_2}{1 + k_2 cos(t)\mu_f}
+\end{aligned}</script><p>It is proven that the closed loop system is GAS at the origin in the paper.</p>
+<blockquote>
+<p><strong>Remark:</strong> The stabilizer design mentioned above is nontrivial, it is difficult to extend the control design scheme to solve a trajectory-tracking problem, and the convergence of the stabilizing errors to zero is slow. In addition, the physical meaning of feedback is not clear.</p>
+</blockquote>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@inproceedings&#123;mazenc2002global,</span><br><span class="line">  title=&#123;Global uniform asymptotic stabilization of an underactuated surface vessel&#125;,</span><br><span class="line">  author=&#123;Mazenc, Fr&#123;<span class="tag">\<span class="name">'</span></span>e&#125;d&#123;<span class="tag">\<span class="name">'</span></span>e&#125;ric and Pettersen, Kristin Ytterstad and Nijmeijer, Henk&#125;,</span><br><span class="line">  booktitle=&#123;Proceedings of the 41st IEEE Conference on Decision and Control, 2002.&#125;,</span><br><span class="line">  volume=&#123;1&#125;,</span><br><span class="line">  pages=&#123;510--515&#125;,</span><br><span class="line">  year=&#123;2002&#125;,</span><br><span class="line">  organization=&#123;IEEE&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></article></div></main><footer><div class="paginator"><a href="/2019/02/20/Lyapunov-Theory/" class="next">NEXT</a></div><div class="copyright"><p>© 2019 <a href="https://rm-rf.moe">HSM</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-71542166-1",'auto');ga('send','pageview');</script></body></html>
